@@ -1,0 +1,233 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+@charset "utf-8";
+
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}";
+
+// Cupertino Base 16 theme for code cells
+$base00: #ffffff;
+$base01: #c0c0c0;
+$base02: #c0c0c0;
+$base03: #808080;
+$base04: #808080;
+$base05: #404040;
+$base06: #404040;
+$base07: #5e5e5e;
+$base08: #c41a15;
+$base09: #eb8500;
+$base0a: #826b28;
+$base0b: #007400;
+$base0c: #318495;
+$base0d: #0000ff;
+$base0e: #a90d91;
+$base0f: #826b28;
+$base10: #ffffff;
+$base11: #ffffff;
+$base12: #c41a15;
+$base13: #826b28;
+$base14: #007400;
+$base15: #318495;
+$base16: #0000ff;
+$base17: #a90d91;
+
+@import "minimal-mistakes";
+
+// Decrease the font-size across the site
+html {
+  font-size: 14px;
+
+  @include breakpoint($small) {
+    font-size: 14px;
+  }
+
+  @include breakpoint($medium) {
+    font-size: 15px; 
+  }
+
+  @include breakpoint($large) {
+    font-size: 16px;
+  }
+
+  @include breakpoint($x-large) {
+    font-size: 18px;
+  }
+}
+
+// Use vertically symmetric margins for all headings
+h1, h2, h3, h4, h5, h6 {
+  // margin: 0.6em 0 0.6em;
+  margin: 1.6em 0 0.8em;
+}
+
+// Increase top margin of main body
+.page__title {
+  margin-top: 0.3em;
+}
+
+// Decrease the height of the footer
+.page__footer footer {
+  margin-top: 1em;
+  padding: 0 1em 1em;
+}
+
+// Reduce font-size of main content
+.page__content p, .page__content li, .page__content dl {
+  font-size: 0.9em;
+}
+
+// Top and bottom margin for p elements
+.page__content p {
+  margin: 1.3em 0;
+}
+
+// Adjust code font
+div.highlighter-rouge, figure.highlight {
+  font-size: 0.65em;
+  line-height: 1.65em;
+}
+code .notice {
+  font-family: "Fira Code", monospace;
+}
+
+// Adjust font-size of table of contents
+.toc__menu {
+  font-size: 1em;
+}
+
+// Padding between table of contents and date on small screens
+.sidebar__right {
+  padding-top: 1em;
+}
+
+// Increase margin between sidebars and main body on large screens
+@media only screen and (min-width: 64em) {
+  .sidebar {
+    width: calc(300px - 2em);
+  }
+  .sidebar__right {
+    padding-left: 2em;
+    padding-top: 0;
+  }
+  // Adjust font-size of table of contents
+  .toc__menu {
+    font-size: 0.75em;
+  }
+}
+
+// Static left sidebar on posts
+.layout--single .sidebar.sticky {
+  position: static;
+}
+
+// Decrease margin between author profile and main body on mobile
+.sidebar > *, .sidebar p {
+  margin-bottom: 0;
+}
+
+// ASCII art as header logo
+.ascii {
+  overflow: hidden;
+  line-height: 1;
+  font-size: 0.3em;
+}
+.ascii a {
+  margin: 0;
+  color: #00C431;
+}
+.ascii a:hover {
+  margin: 0;
+  color: #00c4ba;
+}
+.noselect {
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}
+
+// Add a border to code cells
+div.highlighter-rouge {
+  border: 2px solid #f2f3f3;
+}
+
+// Use notices to contain the output of a code cell
+.notice {
+  margin: -2.3em 0 2em 0 !important;
+  font-family: Monaco, Consolas, "Lucida Console", monospace;
+  font-size: 0.65em !important;
+  line-height: 1.65em;
+  padding: 1em 1em 0.5em 1em;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #bbb white;
+
+  p {
+    font-size: 1em;
+  }
+}
+div.highlighter-rouge {
+  margin-bottom: 1.8em;
+}
+
+// Code scrollbar format
+pre.highlight {
+  scrollbar-width: thin;
+  scrollbar-color: #bbb white;
+}
+
+// Output
+.output p {
+  white-space: pre;
+  margin: 0;
+}
+
+// Smaller font-size for MathJax
+mjx-math {
+  font-size: 95%;
+}
+
+.MathJax {
+  font-size: 1.05em !important;
+}
+
+.page__meta, .comment__date {
+  margin-bottom: 0em;
+}
+
+// Increase the margin and font-size of excerpts on the front page
+.archive__item-excerpt {
+  font-size: 0.9em;
+  margin-bottom: 2em;
+}
+
+// Style for bibliography
+.bibliography {
+  font-size: 0.8em;
+  overflow-x: scroll;
+
+  a {
+    display: inline-block;
+  }
+}
+
+// Dracula Base 16 theme (not used)
+// $base00: #282a36; // Background
+// $base01: #3a3c4e;
+// $base02: #6272a4; // ?
+// $base03: #4d4f68;
+// $base04: #6272a4; // Comments
+// $base05: #f8f8f2; // Variables
+// $base06: #000000; // ?
+// $base07: #000000; // ?
+// $base08: #000000; // ?
+// $base09: #bd93f9; // Numbers
+// $base0a: #8be9fd; // Classes
+// $base0b: #f1fa8c; // Strings
+// $base0c: #ff79c6; // Operators
+// $base0d: #00f769; // Functions
+// $base0e: #ff79c6; // Keywords (def, return etc.)
+// $base0f: #000000; // ?
