@@ -1,6 +1,6 @@
 ---
 title: "Neural Networks: Building Blocks"
-date: 2022-03-28T12:30:00
+date: 2022-03-31T10:30:00
 toc: true
 toc_label: "Contents"
 toc_sticky: false
@@ -91,10 +91,10 @@ If the output of a neuron were the weighted sum of its inputs, neural networks w
 
 <div align="center">
 <div style="width: 100%; display: flex; justify-content: center; flex-flow: row nowrap; align-items: center;">
-<div style="padding: 2%; width: 47.5%; height: 100%;">
+<div style="padding: 0 2%; width: 47.5%; height: 100%;">
 <img src="/assets/images/moons_logits_3d.png" style="max-width: 100%; max-height: 100%;">
 </div>
-<div style="padding: 2%; width: 52.5%; height: 100%;">
+<div style="padding: 0 2%; width: 52.5%; height: 100%;">
 <img src="/assets/images/moons_logits.png" style="max-width: 100%; max-height: 100%;">
 </div>
 </div>
@@ -104,10 +104,10 @@ The decision surface illustrated above is that of a model with ReLU and Sigmoid 
 
 <div align="center">
 <div style="width: 100%; display: flex; justify-content: center; flex-flow: row nowrap; align-items: center;">
-<div style="padding: 2%; width: 47.5%; height: 100%;">
+<div style="padding: 0 2%; width: 47.5%; height: 100%;">
 <img src="/assets/images/moons_linear_3d.png" style="max-width: 100%; max-height: 100%;">
 </div>
-<div style="padding: 2%; width: 52.5%; height: 100%;">
+<div style="padding: 0 2%; width: 52.5%; height: 100%;">
 <img src="/assets/images/moons_linear.png" style="max-width: 100%; max-height: 100%;">
 </div>
 </div>
@@ -442,7 +442,7 @@ Neural networks are trained by gradually adjusting their parameters based on a f
 <p style="font-size:0.8em;">Loss landscape - A 3D surface plot of the loss of ResNet-110-noshot (Li et al., 2017)</p>
 </div>
 
-### Loss Function
+### Loss Functions
 
 The ***loss function*** (also known as the cost function, objective function or criterion) computes the extent to which the neural network's ouput differs from the expected output. Loss functions depend on the architecture of a neural network and its expected output, which are task-dependent. The value calculated by the loss function is referred to as ***loss***.
 
@@ -1876,7 +1876,7 @@ train_data = TensorDataset(X_train, y_train)
 train_loader = DataLoader(train_data, batch_size=32, shuffle=True)
 ```
 
-The model is trained for \\(30\\) epochs using the Adam optimizer with a learning rate of \\(0.0002\\). Since the previous model was slightly overfitted, we increase the regularization parameter \\(I\lambda\\) to \\(0.003\\).
+The model is trained for \\(30\\) epochs using the Adam optimizer with a learning rate of \\(0.0002\\). Since the previous model was slightly overfitted, we increase the regularization parameter \\(\lambda\\) to \\(0.003\\).
 
 ```python
 model = PytorchNeuralNetwork().to("cpu")
@@ -1938,7 +1938,7 @@ Further hyperparameter tuning will likely only lead to marginal improvements. In
 - Chollet, F. (2021). Deep Learning with Python (2nd Ed.). Manning.
 - CS231n Convolutional Neural Networks for Visual Recognition. (2022). [https://cs231n.github.io/](https://cs231n.github.io/)
 - Duchi, J., Hazan, E., & Singer, Y. (2011). Adaptive Subgradient Methods for Online Learning and Stochastic Optimization. Journal of Machine Learning Research, 12, 2121–2159.
-- Glorot, X., & Bengio, Y. (2010). Understanding the difficulty of training deep feedforward neural networks. In Y. W. Teh & M. Titterington (Eds.), Proceedings of the Thirteenth International Conference on Artificial Intelligence and Statistics (Vol. 9, pp. 249–256). PMLR. [https://proceedings.mlr.press/v9/glorot10a.html](https://cs231n.github.io/)
+- Glorot, X., & Bengio, Y. (2010). Understanding the difficulty of training deep feedforward neural networks. In Y. W. Teh & M. Titterington (Eds.), Proceedings of the Thirteenth International Conference on Artificial Intelligence and Statistics (Vol. 9, pp. 249–256). PMLR. [https://proceedings.mlr.press/v9/glorot10a.html](https://proceedings.mlr.press/v9/glorot10a.html)
 - Goodfellow, I., Bengio, Y., & Courville, A. (2016). Deep Learning. MIT Press.
 - Hinton, G. (2012). Neural Networks for Machine Learning Lecture 6a Overview of mini-­-batch gradient descent. [https://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf](https://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf)
 - Ioffe, S., & Szegedy, C. (2015). Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift. 32nd International Conference on Machine Learning, ICML 2015, 1, 448–456. [https://doi.org/10.48550/arxiv.1502.03167](https://doi.org/10.48550/arxiv.1502.03167)
