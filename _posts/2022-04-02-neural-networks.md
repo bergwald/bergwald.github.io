@@ -800,7 +800,7 @@ $$\nabla_{\theta}J(\theta; x, y) = \frac{1}{n}\sum_{i=1}^n \nabla_{\theta}J(\the
 
 Each training example is unique and its gradient can differ significantly from that of other training examples. For a given parameter \\(\theta_j\\), the partial derivative \\(\partial L / \partial \theta_j\\) depends on the random sample of training data. The distribution of the partial derivatives \\(\partial L / \partial \theta_j\\) of all training examples can therefore be described by a probability density function \\(P\\):
 
-$$\dfrac{\partial \mathcal{L}}{\partial \theta_j} \sim P$$
+$$\dfrac{\partial L}{\partial \theta_j} \sim P$$
 
 The shape, mean and standard deviation of \\(P\\) depends on the model architecture, training dataset, and parameter in question. The mean and variance of the partial derivatives for one parameter can thus be drastically different than for another.
 
@@ -872,15 +872,13 @@ The advantage of mini-batch gradient descent is that using a batch size larger t
 
 $$\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}}$$
 
-where \\(\sigma\\) is the true standard deviation of the distribution and \\(n\\) is the number of samples drawn. The factor \\(1 / \sqrt{n}\\) indicates that reducing the standard error of the mean requires exponentially more samples. Beyond a certain size, large batches have therefore diminishing returns. Memory and IO bandwidth limit vectorization and it becomes preferrable to update the parameters more frequently rather than caclulate more accurate gradients.
+where \\(\sigma\\) is the true standard deviation of the distribution and \\(n\\) is the number of samples drawn. The factor \\(1 / \sqrt{n}\\) indicates that reducing the standard error of the mean requires exponentially more samples. Beyond a certain size, large batches have therefore diminishing returns. Memory and IO bandwidth limit vectorization and it becomes preferrable to update the parameters more frequently rather than calculate more accurate gradients.
 
 <div align="center">
 <img src="/assets/images/mccormick_minibatch.png" style="width: calc(1em * 26);"/>
 </div>
 
 Note that the number of epochs is not indicative of the speed in wall-clock time of an optimizer. The number of epochs, together with the batch size, merely indicates the number of updates the optimizers performs until it converges. To assess the speed of an optimizer we would need to analyse the time complexity of the gradient calculation and parameter update, or run an experiment.
-
-In the graph above, stochastic gradient descent converges in approximatly 50 epochs while mini-batch gradient descent takes around 160 epochs. Since the fictional training dataset has 40 examples, we can estimate that stochastic GD performed 2000 updates (40\*50) until it converged while mini-batch performed a total of 1600 updates (40/4\*160).
 
 #### Momentum
 
