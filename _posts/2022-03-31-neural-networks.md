@@ -27,7 +27,7 @@ $$y = σ(\sum\limits_{i=1}^n w_{i}x_{i} + b)$$
 where the neuron's activation \\(y\\) is determined by a sigmoid activation function \\(σ\\), the neuron's weights \\(w_{n}\\), its inputs \\(x_{n}\\), and a bias \\(b\\).
 
 <div align="center">
-<img src="/assets/images/perceptron.svg" alt="A Single Neuron" style="width: calc(1em * 21);"/>
+<img src="/assets/images/perceptron.svg" alt="A perceptron" style="width: calc(1em * 21);"/>
 </div>
 
 The weights and inputs can be represented as tensors and the weighted sum can be therefore computed as a dot product between the weight tensor \\(w\\) and the input tensor \\(x\\).
@@ -92,10 +92,10 @@ If the output of a neuron were the weighted sum of its inputs, neural networks w
 <div align="center">
 <div style="width: 100%; display: flex; justify-content: center; flex-flow: row nowrap; align-items: center;">
 <div style="padding: 0 2%; width: 47.5%; height: 100%;">
-<img src="/assets/images/moons_logits_3d.png" style="max-width: 100%; max-height: 100%;">
+<img src="/assets/images/moons_logits_3d.png" style="max-width: 100%; max-height: 100%;" alt="Decision surface of a non-linear classifier">
 </div>
 <div style="padding: 0 2%; width: 52.5%; height: 100%;">
-<img src="/assets/images/moons_logits.png" style="max-width: 100%; max-height: 100%;">
+<img src="/assets/images/moons_logits.png" style="max-width: 100%; max-height: 100%;" alt="Decision surface of a non-linear classifier">
 </div>
 </div>
 </div>
@@ -105,10 +105,10 @@ The decision surface illustrated above is that of a model with ReLU and Sigmoid 
 <div align="center">
 <div style="width: 100%; display: flex; justify-content: center; flex-flow: row nowrap; align-items: center;">
 <div style="padding: 0 2%; width: 47.5%; height: 100%;">
-<img src="/assets/images/moons_linear_3d.png" style="max-width: 100%; max-height: 100%;">
+<img src="/assets/images/moons_linear_3d.png" style="max-width: 100%; max-height: 100%;" alt="Decision surface of a linear classifier">
 </div>
 <div style="padding: 0 2%; width: 52.5%; height: 100%;">
-<img src="/assets/images/moons_linear.png" style="max-width: 100%; max-height: 100%;">
+<img src="/assets/images/moons_linear.png" style="max-width: 100%; max-height: 100%;" alt="Decision surface of a linear classifier">
 </div>
 </div>
 </div>
@@ -130,7 +130,7 @@ def sigmoid(z, derivative=False):
 ```
 
 <div align="center">
-<img src="/assets/images/sigmoid.png" style="width: calc(1em *22);"/>
+<img src="/assets/images/sigmoid.png" style="width: calc(1em *22);" atl="Sigmoid activation function"/>
 </div>
 
 #### **Tanh**
@@ -150,7 +150,7 @@ def tanh(z, derivative=False):
 ```
 
 <div align="center">
-<img src="/assets/images/tanh.png" style="width: calc(1em *22);"/>
+<img src="/assets/images/tanh.png" style="width: calc(1em *22);" alt="Tanh activation function"/>
 </div>
 
 #### **Rectified Linear Unit (ReLU)**
@@ -176,7 +176,7 @@ def relu(z, derivative=False):
 ```
 
 <div align="center">
-<img src="/assets/images/relu.png" style="width: calc(1em *22);"/>
+<img src="/assets/images/relu.png" style="width: calc(1em *22);" alt="ReLU activation function"/>
 </div>
 
 ## A Network of Neurons
@@ -243,7 +243,7 @@ array([[1.5764, 3.1842]])
 The neural network below has one input layer, one output layer, and two hidden layers. The ***input layer*** represents the initial input fed into the network. The ***hidden layers*** are the layers between the input and output layers. Hidden and output layers are neural layers that compute activations for their inputs. ***Output layers*** sometimes use different activation functions than the hidden layers to return a normalized result (e.g. w/ sigmoid) or a probability distribution (e.g. w/ softmax).
 
 <p align="center">
-    <img src="/assets/images/nn.svg" width="100%" alt="A single neuron"/>
+    <img src="/assets/images/nn.svg" width="100%" alt="A neural network"/>
 </p>
 
 The layers that constitute the network above are ***fully connected*** (also called ***densely connected***), meaning that each neuron in a layer is connected to all neurons from the previous layer. Models made up of fully connected layers are called fully connected neural networks (FCNN). In contrast, in other neural networks such as convolutional neural networks (CNN), neurons are only connected to a small region of the previous layer.
@@ -401,7 +401,7 @@ The activations of a filter are computed as a convolution between its weights an
 Feedforward layers such as fully-connected and convolutional layers process each input independently, without storing any state between each forward pass. With these layers, sequential data such as timeseries or text must therefore be processed in a single sequence, i.e. all at once. ***Recurrent layers*** process sequential data iteratively and in relation to previous sequences. Through recurrence, they mantain a *state* across each step.
 
 <div align="center">
-<img src="/assets/images/recurrentlayer.svg" width="55%" alt="Normalization methods" />
+<img src="/assets/images/recurrentlayer.svg" width="55%" alt="Recurrent layer" />
 </div>
 
 Long short-term memory (LSTM) and gated recurrent units (GRU) are the two algorithms commonly used to implement recurrent layers.
@@ -438,7 +438,7 @@ Sum: 1.0
 Neural networks are trained by gradually adjusting their parameters based on a feedback signal. The ***loss function*** computes the extent to which a neural network's ouput differs from the expected output and its result therefore serves as feedback signal. Finding the parameters that minimize the loss function is an optimization problem, which can be solved using ***gradient descent***. Gradient descent consists in finding the negative gradient of the network over a few training examples and adjusting the parameters accordingly. ***Backpropagation*** is the algorithm used for computing the negative gradient of the network. The ***optimizer*** is the gradient-based optimization algorithm that, given the gradient of the network, adjusts its weights.
 
 <div align="center">
-<img src="/assets/images/loss_landscape.png" width="55%" alt="Loss landscape"/>
+<img src="/assets/images/loss_landscape.png" width="55%" alt="Loss landscape of ResNet-110-noshot"/>
 <p style="font-size:0.8em;">Loss landscape - A 3D surface plot of the loss of ResNet-110-noshot (Li et al., 2017)</p>
 </div>
 
@@ -560,7 +560,7 @@ $$\frac{\partial y}{\partial x} = \frac{\partial y}{\partial z}\frac{\partial z}
 For example, the function \\(y = σ(w⋅x  + b)\\) can be expressed as the following computational graph.
 
 <div align="center">
-<img src="/assets/images/backpropgraph.svg" style="width: calc(1em * 31);" alt="Backpropagation through the computational graph"/>
+<img src="/assets/images/backpropgraph.svg" style="width: calc(1em * 31);" alt="Backpropagation through a computational graph"/>
 </div>
 
 The partial derivative between the loss \\(L\\) and the weights \\(w\\) is given by:
@@ -756,7 +756,7 @@ def grad_mccormick(x, y):
 ```
 
 <div align="center">
-<img src="/assets/images/mccormick_contour.png" style="width: calc(1em * 26);"/>
+<img src="/assets/images/mccormick_contour.png" style="width: calc(1em * 26);" alt="Heatmap of the McCormick function"/>
 <p style="font-size:0.8em;">A heatmap of the McCormick function, which is used as an artifical loss landscape. The quivers indicate the direction of the negative gradient.</p>
 </div>
 
@@ -781,7 +781,7 @@ bgd_mccormick = list(bgd(start, lr=0.01, epochs=10000))
 ```
 
 <div align="center">
-<img src="/assets/images/mccormick_bgd.png" style="width: calc(1em * 26);"/>
+<img src="/assets/images/mccormick_bgd.png" style="width: calc(1em * 26);" alt="Batch gradient descent"/>
 </div>
 
 #### Stochastic Gradient Descent
@@ -807,7 +807,7 @@ The shape, mean and standard deviation of \\(P\\) depends on the model architect
 SGD randomly samples the probability distributions of gradients and is therefore a ***stochastic method***, i.e. it is well described by a random probability distribution.
 
 <div align="center">
-<img src="/assets/images/stochasticity.png" style="width: calc(1em * 32);"/>
+<img src="/assets/images/stochasticity.png" style="width: calc(1em * 32);" alt=""/>
 </div>
 
 The figure above illustrates a distribution of gradients for two parameters \\(\theta_1\\) and \\(\theta_2\\). The mean of all gradients \\(\nabla_{\theta}J(\theta; x, y) = [2, 2]\\). The gradients of the training examples \\(\nabla_{\theta}J(\theta; x^{(i)}, y^{(i)})\\) are represented as following a normal distribution with standard deviation of \\(1\\) on both parameters \\(\theta_1\\) and \\(\theta_2\\).
@@ -857,7 +857,7 @@ sgd_mccormick = list(sgd(data, start, lr=0.001, epochs=2))
 ```
 
 <div align="center">
-<img src="/assets/images/mccormick_sgd.png" style="width: calc(1em * 26);"/>
+<img src="/assets/images/mccormick_sgd.png" style="width: calc(1em * 26);" alt="Stochastic gradient descent"/>
 </div>
 
 The primary advantage of SGD over batch gradient descent is that it is less computationally expensive and therefore converges faster. However, by computing only an approximation of the true gradient, SGD makes a tradeoff between speed and precision of convergence. While batch gradient descent has small gradients near minima, SGD can struggle to settle near minima due to its high stochasticity.
@@ -875,7 +875,7 @@ $$\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}}$$
 where \\(\sigma\\) is the true standard deviation of the distribution and \\(n\\) is the number of samples drawn. The factor \\(1 / \sqrt{n}\\) indicates that reducing the standard error of the mean requires exponentially more samples. Beyond a certain size, large batches have therefore diminishing returns. Memory and IO bandwidth limit vectorization and it becomes preferrable to update the parameters more frequently rather than calculate more accurate gradients.
 
 <div align="center">
-<img src="/assets/images/mccormick_minibatch.png" style="width: calc(1em * 26);"/>
+<img src="/assets/images/mccormick_minibatch.png" style="width: calc(1em * 26);" alt="Mini-batch gradient descent"/>
 </div>
 
 Note that the number of epochs is not indicative of the speed in wall-clock time of an optimizer. The number of epochs, together with the batch size, merely indicates the number of updates the optimizers performs until it converges. To assess the speed of an optimizer we would need to analyse the time complexity of the gradient calculation and parameter update, or run an experiment.
@@ -908,14 +908,14 @@ path = list(momentum(start, lr=0.00005, gamma=0.98, epochs=10, batch_size=4))
 
 <div align="center">
 <div style="width: 130%;max-width: 90vw;transform: translateX(-50%);margin-left: 50%;">
-<img src="/assets/images/mccormick_momentum.png"/>
+<img src="/assets/images/mccormick_momentum.png" alt="Momentum optimizer"/>
 </div>
 </div>
 
 The graph below illustrates some of the characterisitcs of momentum and mini-batch gradient descent on the artificial landscape generated by the Rosenbrock function. Momentum is able to navigate through the ravine and settle near the global minimum while mini-batch gradient descent oscillates at the start and struggles to advance through the bottom of the ravine where gradients are small.
 
 <div align="center">
-<img src="/assets/images/rosenbrock.png" style="width: calc(1em * 26);"/>
+<img src="/assets/images/rosenbrock.png" style="width: calc(1em * 26);" alt="Momentum optimizer on the Rosenbrock function"/>
 </div>
 
 #### Adagrad
@@ -958,7 +958,7 @@ path = list(adagrad(data, start, lr=0.15, epochs=10, batch_size=4))
 
 <div align="center">
 <div style="width: 130%;max-width: 90vw;transform: translateX(-50%);margin-left: 50%;">
-<img src="/assets/images/mccormick_adagrad.png"/>
+<img src="/assets/images/mccormick_adagrad.png" alt="Adagrad optimizer"/>
 </div>
 </div>
 
@@ -994,7 +994,7 @@ path = list(rmsprop(data, start, lr=0.01, epochs=10, gamma=0.9, batch_size=4))
 
 <div align="center">
 <div style="width: 130%;max-width: 90vw;transform: translateX(-50%);margin-left: 50%;">
-<img src="/assets/images/mccormick_rmsprop.png"/>
+<img src="/assets/images/mccormick_rmsprop.png" alt="RMSprop optimizer"/>
 </div>
 </div>
 
@@ -1043,7 +1043,7 @@ path = list(adam(data, start, lr=0.01, epochs=10, b1=0.9, b2=0.999, batch_size=4
 
 <div align="center">
 <div style="width: 130%;max-width: 90vw;transform: translateX(-50%);margin-left: 50%;">
-<img src="/assets/images/mccormick_adam.png"/>
+<img src="/assets/images/mccormick_adam.png" alt="Adam optimizer"/>
 </div>
 </div>
 
@@ -1092,7 +1092,7 @@ Mean:    0.0018   SD: 1.0009
 </div>
 
 <div align="center">
-<img src="/assets/images/init_gaussian.png" style="width: calc(1em * 24);"/>
+<img src="/assets/images/init_gaussian.png" style="width: calc(1em * 24);" alt="Distribution of weights initialized based on a Gaussian probability distribution"/>
 </div>
 
 [**Glorot and Bengio**](https://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf) (2010) suggest initializing a neuron's weights using a uniform probability distribution with mean 0.0 and a range that depends on the number of inputs \\(m\\) and number of outputs \\(n\\) of the layer.
@@ -1119,13 +1119,13 @@ Mean:    0.0002   SD: 0.0511
 </div>
 
 <div align="center">
-<img src="/assets/images/init_xavier.png" style="width: calc(1em * 24);"/>
+<img src="/assets/images/init_xavier.png" style="width: calc(1em * 24);" alt="Distribution of weights initialized with Xavier's initialization method"/>
 </div>
 
 The larger the number of input and neurons in a layer, the smaller the range of weights.
 
 <div align="center">
-<img src="/assets/images/init_xavier_range.png" style="width: calc(1em * 24);"/>
+<img src="/assets/images/init_xavier_range.png" style="width: calc(1em * 24);" alt="Range of weights initialized with Xavier's initialization method"/>
 </div>
 
 [He et al.](https://arxiv.org/abs/1502.01852) (2015) proposed a strategy tailored to networks using the ReLU activation function that, similarly to Xavier initialization, would mantain a stable activation variance throughout the network. Weights are initialized using a Gaussian probability distribution with a mean of 0.0 and a standard deviation of \\(\sqrt \frac{2}{n}\\) where \\(n\\) is the number of inputs to the neuron, while biases are initialized to zero. This method is now known as ***He initialization***.
@@ -1146,7 +1146,7 @@ Mean:    0.0001   SD: 0.0625
 </div>
 
 <div align="center">
-<img src="/assets/images/init_he.png" style="width: calc(1em * 24);"/>
+<img src="/assets/images/init_he.png" style="width: calc(1em * 24);" alt="Distribution of weights initialized with He's initialization method"/>
 </div>
 
 #### Overfitting/Underfitting
@@ -1154,7 +1154,7 @@ Mean:    0.0001   SD: 0.0625
 The central challenge in machine learning is to perform well on new, *previously unseen* inputs. Machine learning models are optimized on a known set of data, but their merit depends on their ability to make reliable predictions on cases they were not trained on. This ability is called ***generalization***.
 
 <div align="center">
-<img src="/assets/images/fit.png" style="width: calc(1em * 24);"/>
+<img src="/assets/images/fit.png" style="width: calc(1em * 24);" alt="Overfitting and underfitting"/>
 </div>
 
 ***Underfitting*** occurs when a model is unable to perform well on the training data. ***Overfitting*** occurs when it performs well on the training data, but does not generalize well. The reason behind this is that the model learns specific characteristics of the training data that are not general features. Specifically, the model's parameters become too adapted to the noise in the data and fail to capture its essential features. Overfitting can be adressed by regularizing the model.
@@ -1671,7 +1671,7 @@ X_train.shape
 </div>
 
 <div align="center">
-<img src="/assets/images/mnist.png" width="55%"/>
+<img src="/assets/images/mnist.png" width="55%" alt="Examples from the MNIST dataset"/>
 </div>
 
 The images have a grayscale ranging from 0 to 255. We rescale these so that all values range between 0 and 1.
@@ -1813,17 +1813,17 @@ loss: 0.2321 train acc.: 0.9943 test acc.: 0.9815 [25/25]
 The model achieves a test error of 1.85%, in line with other fully-connected neural networks of similar size. Despite L2 regularization, the training and test accuracy differ by 1.28%, indicating that the model slightly overfits on the training set.
 
 <div align="center">
-<img src="/assets/images/mnist_loss.png" style="width: calc(1em * 26);"/>
+<img src="/assets/images/mnist_loss.png" style="width: calc(1em * 26);" alt="Loss curves of the neural network"/>
 </div>
 
 <div align="center">
-<img src="/assets/images/mnist_acc.png" style="width: calc(1em * 26);"/>
+<img src="/assets/images/mnist_acc.png" style="width: calc(1em * 26);" alt="Accuracy of the neural network"/>
 </div>
 
 We can also evaluate the model by visualizing its predictions on the test set with a confusion matrix. As can be seen below, digits such as 0, 1 and 3 are seldom misclassified while other such 8 and 9 are misclassified more frequently. The model particularly struggles with distinguishing between 4 and 9, and between 2 and 7.
 
 <div align="center">
-<img src="/assets/images/mnist_cm.png" style="width: calc(1em * 25);"/>
+<img src="/assets/images/mnist_cm.png" style="width: calc(1em * 25);" alt="Confusion matrix of the neural network"/>
 </div>
 
 ### Pytorch
@@ -1920,11 +1920,11 @@ loss: 0.1069 train acc.: 0.9853 test acc.: 0.9769 [30/30]
 While the Pytorch model has a smaller generalization gap than the previous model, it performs slightly worse. The Pytorch model achieves a maximum test accuracy of 97.92% (error of 2.08%), compared to 98.15% for the previous model. This could be due to the initialization, the different optimizer, or the stronger regularization.  
 
 <div align="center">
-<img src="/assets/images/mnist_loss_pytorch.png" style="width: calc(1em * 26);"/>
+<img src="/assets/images/mnist_loss_pytorch.png" style="width: calc(1em * 26);" alt="Loss curves of the Pytorch model"/>
 </div>
 
 <div align="center">
-<img src="/assets/images/mnist_acc_pytorch.png" style="width: calc(1em * 26);"/>
+<img src="/assets/images/mnist_acc_pytorch.png" style="width: calc(1em * 26);" alt="Accuracy of the Pytorch model"/>
 </div>
 
 Further hyperparameter tuning will likely only lead to marginal improvements. Instead, a new architecture such as a CNN, dataset augmentation, and an increased representational capacity are more likely to improve the test set accuracy. State of the art models reach accuracies above 95.5% on the MNIST dataset. LeCun (1998) has compiled an [overview](http://yann.lecun.com/exdb/mnist/) several approaches and their results, while *Papers with Code* provides a [benchmark](https://paperswithcode.com/sota/image-classification-on-mnist) of the top recent methods.
