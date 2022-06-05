@@ -12,7 +12,7 @@ show_date: true
 
 Artificial neural networks are composed by a variety of functions. This is a collection of my notes on these building blocks. A Jupyter notebook with the complete implementations and code used to create the illustrations is available [here](https://github.com/bergwald/ai). 
 
-This is a work in progress. The depth and scope vary throughout, with sections written recently being more detailed and expansive than those written at the start. Contributions in the form of errata or suggestions are welcome. Please send me an email or open an issue on the [Github repository](https://github.com/bergwald/bergwald.github.io).
+This is a work in progress. The depth and scope vary throughout, with sections written recently being more detailed and expansive than those written at the start. Contributions in the form of errata or suggestions are welcome. Please send me an email or open an issue in the [Github repository](https://github.com/bergwald/bergwald.github.io) of this website.
 
 ## A Single Neuron
 
@@ -34,7 +34,7 @@ The weights and inputs can be represented as tensors and the weighted sum can be
 
 $$y = \sigma(w \cdot x  + b)$$
 
-One advantage of computing the weighted sum as a dot product is that we can leverage efficient, highly-parallelized libraries such as CUDA or BLAS (Basic Linear Algebra Subprograms) implementations.
+One advantage of computing the weighted sum as a dot product is that we can leverage efficient, highly-parallelized libraries such as BLAS (Basic Linear Algebra Subprograms) implementations or parallel computing platforms such as CUDA.
 
 ```python
 weights = np.array([0.1, 0.2, 0.3])
@@ -100,7 +100,7 @@ If the output of a neuron were the weighted sum of its inputs, neural networks w
 </div>
 </div>
 
-The decision surface illustrated above is that of a model with ReLU and Sigmoid activation functions. This model achieves an accuracy of 91.25% on the training data. In contrast, a model without nonlinear activation functions is only able to learn a linear decision surface, as illustrated below. The linear model is unable to fully capture the features in the trainingset and achieves an accuracy of only 83.25%.
+The decision surface illustrated above is that of a model with ReLU and Sigmoid activation functions. This model achieves an accuracy of 91.25% on the training data. In contrast, a model without nonlinear activation functions is only able to learn a linear decision surface, as illustrated below. The linear model is unable to fully capture the features in the training set and achieves an accuracy of only 83.25%.
 
 <div align="center">
 <div style="width: 100%; display: flex; justify-content: center; flex-flow: row nowrap; align-items: center;">
@@ -377,7 +377,7 @@ array([[0.69168217, 0.53534015],
 
 ### Beyond fully-connected neural layers
 
-While fully-connected layers work well with simple rank-1 tensors as inputs, other modalities benefit from different approaches.
+While fully-connected layers work well with simple rank-1 tensors as inputs, other approaches have been developed for different modalities.
 
 Large images and images with non-centered features are often tackled with convolutional layers, which are sparsely-connected and better suited to capturing local patterns than fully-connected layers.
 
