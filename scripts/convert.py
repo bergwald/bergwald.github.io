@@ -4,8 +4,8 @@ Quick and dirty script to convert a Jupyter notebook into a post
 
 import json
 
-SOURCE = "/home/thomas/Git/ai/neuralnetworks.ipynb"
-TARGET = "/_posts/article.md"
+SOURCE = "/home/thomas/Git/ai/building-blocks/neuralnetworks.ipynb"
+TARGET = "./_posts/article.md"
 
 with open(SOURCE) as f:
     file = f.read()
