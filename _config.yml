@@ -18,6 +18,7 @@ masthead_title: " "
 logo: assets/images/logo.png
 description: >- # ignore newlines
   The Github Pages Site of Bergwald.
+github: [metadata] # suppress warning from Github Metadata plugin 
 github_username: bergwald
 minimal_mistakes_skin: default
 search: true
