@@ -204,6 +204,11 @@ mjx-math {
   margin-bottom: 2em;
 }
 
+// Decrease the margin between the footer and the post feed
+.archive {
+  margin-bottom: -1.5em;
+}
+
 // Style for bibliography
 .bibliography {
   font-size: 0.8em;

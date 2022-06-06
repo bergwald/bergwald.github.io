@@ -1,6 +1,6 @@
 ---
 title: "Neural Networks: Building Blocks"
-date: 2022-03-31T10:30:00
+date: 2022-06-05T10:30:00
 toc: true
 toc_label: "Contents"
 toc_sticky: false
