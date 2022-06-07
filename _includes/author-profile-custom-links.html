@@ -1,0 +1,21 @@
+<li>
+    <i class="far fa-fw fa-envelope" aria-hidden="true"></i>
+    <span id="address" onclick="showAddress();">Email</span>
+    <style>
+        #address:hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    </style>
+    <script type="text/javascript">
+        // Email address in Base64
+        const encoded = "dC52b2VmZnJheXBleXJvQG91dGxvb2suY29t";
+        // Decode the Base64 string and update element
+        function showAddress() {
+            let decoded = atob(encoded);
+            let address = document.getElementById("address");
+            address.textContent = decoded;
+            address.removeAttribute("id");
+        };
+    </script>
+</li>
