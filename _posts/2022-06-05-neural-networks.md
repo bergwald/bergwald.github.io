@@ -10,9 +10,9 @@ show_date: true
 
 ## Overview
 
-Artificial neural networks are composed by a variety of functions. This is a collection of my notes on these building blocks. A Jupyter notebook with the complete implementations and code used to create the illustrations is available [here](https://github.com/bergwald/ai). 
+Artificial neural networks are composed by a variety of functions. This is a collection of my notes on these building blocks. A Jupyter notebook with the code used to generate the illustrations and compute the results is available [here](https://github.com/bergwald/ai). 
 
-This is a work in progress. The depth and scope vary throughout, with sections written recently being more detailed and expansive than those written at the start. Contributions in the form of errata or suggestions are welcome. Please send me an email or open an issue in the [Github repository](https://github.com/bergwald/bergwald.github.io) of this website.
+This is a work in progress. Depth and breadth vary throughout; recent sections are more detailed and expansive than those written at the start. Contributions in the form of errata or suggestions are welcome. Please send me an email or open an issue in the [Github repository](https://github.com/bergwald/bergwald.github.io) of this website.
 
 ## A Single Neuron
 
@@ -79,7 +79,7 @@ Weighted sum = [[1.11]]
 Activation = 0.7521291114395702
 </div>
 
-*Note*: Neural networks consisting of a single neuron date back to the 1950s. The ***perceptron***, a machine learning algortihm used for binary classification, effectively consists of a single neuron using a [Heaviside step function](https://en.wikipedia.org/wiki/Heaviside_step_function) as its activation function.
+***Note***: Neural networks consisting of a single neuron date back to the 1950s. The ***perceptron***, a machine learning algortihm used for binary classification, effectively consists of a single neuron using a [Heaviside step function](https://en.wikipedia.org/wiki/Heaviside_step_function) as its activation function.
 
 ### Activation Functions
 
@@ -313,11 +313,7 @@ Neural networks can be represented at different levels of abstraction. The persp
 
 A neural network can be formally described as a ***computational graph***. The network is thus a directed graph where every node is a variable (e.g. scalar, tensor, etc.) and every directed edge is an operation (i.e. a differentiable function). The structure of a neural network's computional graph is commonly denoted as its ***architecture***.
 
-<!-- <div align="center">
-<img src="/assets/images/graph.svg" alt="Backpropagation through the computational graph"/>
-</div> -->
-
-Deep learning libraries such as *Tensorflow* and *Pytorch* provide implementations of commonly used layers and an API to chains these layers together into a computational graph. We can implement a limited but similar concept with only Numpy as dependency.  
+Deep learning libraries such as *Tensorflow* and *Pytorch* provide implementations of commonly used layers and an API to chains these layers together into a computational graph. Some of these libraries adopt an object-oriented approach, defining layers as stateful classes that can be combined by the user to build a complete neural network.
 
 ```python
 class Layer:
@@ -435,7 +431,7 @@ Sum: 1.0
 
 ## Backpropagation and Gradient Descent
 
-Neural networks are trained by gradually adjusting their parameters based on a feedback signal. The ***loss function*** computes the extent to which a neural network's ouput differs from the expected output and its result therefore serves as feedback signal. Finding the parameters that minimize the loss function is an optimization problem, which can be solved using ***gradient descent***. Gradient descent consists in finding the negative gradient of the network over a few training examples and adjusting the parameters accordingly. ***Backpropagation*** is the algorithm used for computing the negative gradient of the network. The ***optimizer*** is the gradient-based optimization algorithm that, given the gradient of the network, adjusts its weights.
+Neural networks are trained by gradually adjusting their parameters based on a feedback signal. The ***loss function*** computes the extent to which a neural network's ouput differs from the expected output and its result therefore serves as feedback signal. Finding the parameters that minimize the loss function is an optimization problem, which can be solved using ***gradient descent***. Gradient descent consists in finding the negative gradient of the network over a few training examples and adjusting the parameters accordingly. ***Backpropagation*** is the algorithm used for computing the negative gradient of the network. The ***optimizer*** is the optimization algorithm that, given the gradient of the network, adjusts its weights.
 
 <div align="center">
 <img src="/assets/images/loss_landscape.png" width="55%" alt="Loss landscape of ResNet-110-noshot"/>
@@ -551,7 +547,7 @@ $$
 \end{bmatrix}
 $$
 
-Given the loss \\(L\\) for a given set of inputs, backpropagation consists in recursively computing the partial derivative for all variables in the computational graph by application of the chain rule.
+Given the loss \\(L\\) for a set of inputs, backpropagation consists in recursively computing the partial derivative for all variables in the computational graph by application of the chain rule.
 
 *Chain rule* reminder: Let \\(x\\) be a real number and \\(f\\) and \\(g\\) two functions mapping from a real number to a real number. If \\(z = g(x)\\) and \\(y = f(g(x)) = f(z)\\), the derivative between \\(y\\) and \\(x\\) is
 
@@ -584,7 +580,7 @@ $$
 \frac{\partial z}{\partial b}
 $$
 
-By using the chain rule, we can compute these partial derivatives by calculating the derivatives for all operations. Loss functions are multivariate, but since the expected output \\(y\\) is fixed, we only need the partial derivative with respect to the real output \\(\hat{y}\\). In this example, we use the mean squared error loss function. The sigmoid function, like all activation functions, has one variable and therefore only one derivative. The partial derivatives for the addition operations is straightforward.
+By using the chain rule, we can compute these partial derivatives by calculating the derivatives for all operations. Loss functions are multivariate, but since the expected output \\(y\\) is fixed, we only need the partial derivative with respect to the real output \\(\hat{y}\\). In this example, we use the mean squared error loss function. The sigmoid function, like all activation functions, has one variable and therefore only one derivative.
 
 $$
 L = MSE(y, \hat{y})
@@ -636,7 +632,7 @@ $$
 
 Backpropagation consists in computing these expressions progressively as we move backwards though the network. This operation is denoted as the ***backward pass***.
 
-*Note*: the principles outlined above apply to tensors of any rank (i.e. vectors and matrices). However, when implementing backpropagation, it is important to pay attention to the dimensionality of the tensors and choose whether to do an element-wise multiplication or a matrix multiplication. In the implementation below, \\(\partial L / \partial \hat{y}\\) and \\(\partial \hat{y} / \partial z\\) are both tensors of rank 1 so that \\((\partial L / \partial \hat{y}) \cdot (\partial \hat{y} / \partial z)\\) is an element-wise multiplication (Hadamard product) of both tensors. On the other hand, \\((\partial z / \partial u) \cdot (\partial u / \partial w)\\) is a matrix multiplication.
+***Note***: the principles outlined above apply to tensors of any rank (i.e. vectors and matrices). However, when implementing backpropagation, it is important to pay attention to the dimensionality of the tensors and choose whether to do an element-wise multiplication or a matrix multiplication. In the implementation below, \\(\partial L / \partial \hat{y}\\) and \\(\partial \hat{y} / \partial z\\) are both tensors of rank 1 so that \\((\partial L / \partial \hat{y}) \cdot (\partial \hat{y} / \partial z)\\) is an element-wise multiplication (Hadamard product) of both tensors. On the other hand, \\((\partial z / \partial u) \cdot (\partial u / \partial w)\\) is a matrix multiplication.
 
 ```python
 x = np.array([[1.4, 0.62, 0.21]])
@@ -692,7 +688,7 @@ dL_dx = dL_dz @ w.T
 # ...
 ```
 
-With batches, we can take the mean of the gradients over all samples in the batch to get the gradient over the batch. The matrix multiplication `x.T @ dL_dz` already sums the gradients along the batch dimension, so we only need to divide its result by the number of samples in the batch.
+With batches, we can take the mean of the gradients over all samples in the batch to calculate the gradient over the batch. The matrix multiplication `x.T @ dL_dz` already sums the gradients along the batch dimension, so we only need to divide its result by the number of samples in the batch.
 
 ```python
 grad_b = np.mean(dL_dz, axis=0, keepdims=True)
@@ -703,7 +699,7 @@ The partial derivatives in backpropagation are nowadays seldom defined and imple
 
 ### Optimizers
 
-***Optimization*** consists in maximizing or minimizing a real function by systematically altering the input values and computing the value of the function. For some function \\(f: \mathbb{R} \rightarrow \mathbb{R}\\), we denote the value of the argument \\(x\\) that minimizes \\(f\\) as follows:
+***Optimization*** consists in maximizing or minimizing a real function by systematically altering its input and computing the value of the function. For some function \\(f: \mathbb{R} \rightarrow \mathbb{R}\\), we denote the value of the argument \\(x\\) that minimizes \\(f\\) as follows:
 
 $$\arg \min_{x \in \mathbb{R}} f(x)$$
 
@@ -721,9 +717,9 @@ The conventional approach is to solve this optimization problem using a variant 
 
 Thoughout this section, we graph the optimizers using test functions for optimization algorithms, which are also known as artificial landscapes. One such function is the *McCormick function*, defined as:
 
-$$f(x, y) = sin(x + y) + (x - y)^2 - 1.5x + 2.5y + 1$$
+$$z = f(x, y) = sin(x + y) + (x - y)^2 - 1.5x + 2.5y + 1$$
 
-The McCormick function is usually evaluated on the input domain \\(x \in [-1.5, 4], y \in [-3, 4]\\). The minimum on this domain is \\(y_{min} = f(x^\*) = -1.91322\\) where \\(x^* = (-0.54719, -1.54719)\\). We use a modified version of the McCormick function with a y-intercept of \\(3\\) instead of \\(1\\) so that \\(y_{min} = 0,08678\\).
+The McCormick function is usually evaluated on the input domain \\(x \in [-1.5, 4], y \in [-3, 4]\\). The minimum on this domain is \\(z_{min} = f(x^\*, y^\*) = -1.91322\\) where \\(x^* = -0.54719\\) and \\(y^\* = -1.54719)\\). We use a modified version of the McCormick function with a z-intercept of \\(3\\) instead of \\(1\\) so that \\(z_{min} = 0,08678\\).
 
 ```python
 def mccormick(x, y):
@@ -790,7 +786,7 @@ bgd_mccormick = list(bgd(start, lr=0.01, epochs=10000))
 
 $$\theta \leftarrow \theta - \eta \cdot \nabla_{\theta}J(\theta; x^{(i)}, y^{(i)})$$
 
-Samples are drawn either by randomly sampling the training data at each iteration, or by shuffling the dataset at each epoch and completing a whole pass through it. In its purest form, SGD uses a sample size of \\(1\\), but can be generalized to larger sample sizes (see mini-batch gradient descent).
+Samples are drawn either by randomly sampling the training data at each iteration, or by shuffling the dataset at each epoch and completing a whole pass through it. In its purest form, SGD uses a sample size of \\(1\\), but it can be generalized to larger sample sizes (see mini-batch gradient descent).
 
 ##### Stochasticity: Under the Hood
 
@@ -806,6 +802,8 @@ The shape, mean and standard deviation of \\(P\\) depends on the model architect
 
 SGD randomly samples the probability distributions of gradients and is therefore a ***stochastic method***, i.e. it is well described by a random probability distribution.
 
+***Note***: the adjectives "random" and "stochastic" can be used interchangeably. "Random" is commonly used to describe a variable while "stochastic" is used to describe a process.
+
 <div align="center">
 <img src="/assets/images/stochasticity.png" style="width: calc(1em * 32);" alt=""/>
 </div>
@@ -814,7 +812,7 @@ The figure above illustrates a distribution of gradients for two parameters \\(\
 
 ##### Simulated Stochasticity
 
-The optimization of artificial landscapes such as the McCormick function is inherently different from that of neural networks. Artifical landscapes are optimized with respect to their real variables and their gradients cannot therefore be approximated stochasticly. However, to simulate the stochasticity of SGD, we can create an artificial stochastic process that generates approximations of a gradient.
+The optimization of artificial landscapes such as the McCormick function is inherently different from that of neural networks. Artifical landscapes are optimized with respect to their real variables and their gradients cannot therefore be approximated stochasticly. However, to simulate the stochasticity of SGD, we can create an artificial stochastic process that generates approximate gradients.
 
 We assume that the partial derivatives over the parameters \\(\theta_1\\) and \\(\theta_2\\) follow normal distributions with standard deviation of 16 and 4, respectively. These distributions are kept constant for all parameter values (this is not very realistic, but is good enough for our purpose). The key variables of our simulation are the dataset and batch size, which determine the expected accuracy of the approximated gradient. The dataset size is set to 40.
 
@@ -868,7 +866,7 @@ The primary advantage of SGD over batch gradient descent is that it is less comp
 
 $$\theta \leftarrow \theta - \eta \cdot \nabla_{\theta}J(\theta; x^{(i:i+n)}, y^{(i:i+n)})$$
 
-The advantage of mini-batch gradient descent is that using a batch size larger than \\(1\\) improves the accuracy of the approximated gradient. Moreover, thanks to highly-optimized linear algebra libraries, computing the gradient of mini-batches that fit into memory is often only marginally slower than computing it for a single training example. However, the accuracy of the approximated gradient, as measured by the standard error of the mean, increass less than linearly. The standard error of the mean \\(\sigma_{\bar{x}}\\) is given by:
+The advantage of mini-batch gradient descent is that using a batch size larger than \\(1\\) improves the accuracy of the approximated gradient. Moreover, thanks to highly-optimized linear algebra libraries, computing the gradient of mini-batches that fit into memory is often only marginally slower than computing it for a single training example. However, the accuracy of the approximated gradient, as measured by the standard error of the mean, increases less than linearly. The standard error of the mean \\(\sigma_{\bar{x}}\\) is given by:
 
 $$\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}}$$
 
@@ -1047,11 +1045,7 @@ path = list(adam(data, start, lr=0.01, epochs=10, b1=0.9, b2=0.999, batch_size=4
 </div>
 </div>
 
-<!-- <div align="center" style="transform: translateX(-30%);">
-<video width="160%" autoplay loop muted playsinline>
-<source src="/assets/images/gradientdescent.mp4" alt="Animation of different gradient descent algorithms">
-</video>
-</div> -->
+An animation of the different gradient descent algorithms is available <a href="https://bergwald.github.io/assets/images/gradientdescent.mp4" target="_blank">here</a>.
 
 ### Hazards
 
@@ -1128,7 +1122,7 @@ The larger the number of input and neurons in a layer, the smaller the range of 
 <img src="/assets/images/init_xavier_range.png" style="width: calc(1em * 24);" alt="Range of weights initialized with Xavier's initialization method"/>
 </div>
 
-[He et al.](https://arxiv.org/abs/1502.01852) (2015) proposed a strategy tailored to networks using the ReLU activation function that, similarly to Xavier initialization, would mantain a stable activation variance throughout the network. Weights are initialized using a Gaussian probability distribution with a mean of 0.0 and a standard deviation of \\(\sqrt \frac{2}{n}\\) where \\(n\\) is the number of inputs to the neuron, while biases are initialized to zero. This method is now known as ***He initialization***.
+[He et al.](https://arxiv.org/abs/1502.01852) (2015) propose a strategy tailored to networks using the ReLU activation function that, similarly to Xavier initialization, would mantain a stable activation variance throughout the network. Weights are initialized using a Gaussian probability distribution with a mean of 0.0 and a standard deviation of \\(\sqrt \frac{2}{n}\\) where \\(n\\) is the number of inputs to the neuron, while biases are initialized to zero. This method is now known as ***He initialization***.
 
 ```python
 def he(inputs, neurons):
@@ -1167,7 +1161,7 @@ Limiting the representative capacity of the network and increasing noise are cor
 
 ### Network size
 
-The simplest regularization method is to reduce the size of the model (i.e. lower the total number of neurons). Reducing its size limits the capacity of the model and thus forces it to learn simpler representations. Unfortunatly, it is difficult to determine the right network size. In practice, the best model is therefore oftentimes "a large model that has been regularized appropriately" (ibid, p. 229). 
+The simplest regularization method is to reduce the size of the model (i.e. lower the total number of neurons). Reducing its size limits the capacity of the model and thus forces it to learn simpler representations. Unfortunately, it is difficult to determine the right network size. In practice, the best model is therefore oftentimes "a large model that has been regularized appropriately" (ibid, p. 229). 
 
 ### Weight regularization
 
@@ -1175,7 +1169,7 @@ Large weights place a strong emphasis on a few features and lead to high gradien
 
 $$L_{reg} = L + \lambda \Omega$$
 
-where \\L\\) is the unregularized loss, and \\(\Omega(\theta)\\) is the regularization penalty (\\(L^1\\) or \\(L^2\\)). \\(\lambda\\) > 0 is a hyperparameter that indicates the strenght of the preference for smaller weights. Minimizing a loss with weight regularization compels the model to choose weights that "make a tradeoff between fitting the training data and being small" (Goodfellow et al., 2016, p. 119).
+where \\(L\\) is the unregularized loss, and \\(\Omega(\theta)\\) is the regularization penalty (\\(L^1\\) or \\(L^2\\)). \\(\lambda\\) > 0 is a hyperparameter that indicates the strenght of the preference for smaller weights. Minimizing a loss with weight regularization compels the model to choose weights that "make a tradeoff between fitting the training data and being small" (Goodfellow et al., 2016, p. 119).
 
 \\(L^p\\) spaces reminder: The \\(p\\)-norm or \\(L^p\\)-norm of a vector \\(x\\) is defined by
 
@@ -1341,6 +1335,7 @@ Gradients are determined by the activations and eventual output of the neural ne
 
 <div align="center">
 <img src="/assets/images/norms.jpg" width="80%" style="margin:20px 0;width: calc(1em * 32);" alt="Normalization methods"/>
+<p style="font-size:0.8em;">Normalization methods (Wu and He, 2018)</p>
 </div>
 
 Batch, layer, instance and group normalization are four methods commonly used for normalizing hidden states. Their main differentiator is the dimension along which they are applied. The figure above illustrates this difference. \\(N\\) is the batch axis, \\(C\\) the channel axis, and \\((H, W)\\) are the spatial axes, i.e. the height and width. In fully-connected neural networks, the channel axis represents the neurons in a layer, while the spatial axes have a size of 1. In convolutional neural networks, the channel axis represents the filters in a layer while the spatial axes correspond to the filter's height and width. Batch norm normalizes weighted sums across a mini-batch, while the other three methods operate on a single instance.
@@ -1373,7 +1368,7 @@ $$\sigma^2_{new} = \alpha \sigma^2 + (1 - \alpha) \sigma^2_t $$
 
 where \\(\mu\\) and \\(\sigma^2\\) are the running averages, \\(\mu_t\\) and \\(\sigma^2_t\\) are the new observed values, and \\(\alpha\\) is a momentum parameter that is usually set to \\(0.9\\) or \\(0.99\\).
 
-The implementation below is designed for 1D inputs (i.e. with spatial axes of size 1).
+For 1D inputs (i.e. with spatial axes of size 1), batch norm can be implemented as follows:
 
 ```python
 class BatchNorm():
@@ -1428,39 +1423,7 @@ Mean       [ 0.00000000e+00 -4.99600361e-16  0.00000000e+00]
 Variance   [0.99999999 0.99999994 0.99999999]
 </div>
 
-<!-- Batch normalization is part of the computational graph of a network and we therefore need to backpropagate the loss through it and calculate the gradient of its parameters during training. The partial derivatives with respect to \\(\gamma\\) and \\(\beta\\) are given by:
-
-$$
-\frac{\partial L}{\partial \gamma} = \sum_{i=1}^m \frac{\partial L}{\partial y_i} \cdot \hat{x}_i
-$$
-
-$$
-\frac{\partial L}{\partial \beta} = \sum_{i=1}^m \frac{\partial L}{\partial y_i}
-$$
-
-where \\(\partial L / \partial y\\) is the loss of the ouput \\(y\\) of the batch normalization layer. To backpropagate the loss to lower layers, we compute first the intermediate partial derivative \\(\partial L / \partial \hat{x}_i\\):
-
-$$
-\frac{\partial L}{\partial \hat{x}_i }
-=
-\frac{\partial L}{\partial y_i} \cdot \gamma
-$$
-
-and then relate it to the input \\(x\\):
-
-$$
-\frac{\partial L}{\partial x_i} = \frac{1}{m} \odot (\sigma^2 + \epsilon)^{-1/2}
-\left[
-    m
-    \frac{\partial L}{\partial \hat{x}_i}
-    - \sum_{j=1}^m \frac{\partial L}{\partial \hat{x}_j}
-    - \hat{x}_i \sum_{j=1}^m \frac{\partial L}{\partial \hat{x}_j} \cdot \hat{x}_j
-\right]
-$$
-
-See Kevin Zakka's [blogpost](https://kevinzakka.github.io/2016/09/14/batch_normalization/) for a full derivation. -->
-
-Batch normalization can considerably improve the performance of deep neural networks. It also reduces their sensitivity to hyperparamaters such as the learning rate and the initialization strategy. One of its drawbacks is that it requires sufficiently large batch sizes (e.g. 32) to work well. Small batch sizes result in inaccurate estimations of the mean and variance of the batch and can thus lead to a higher model error. Another downside is that it relies on statistics pre-computed from the training set to perform normalization at inference time. If the data distribution changes, this can lead to inconsistent results between training and testing.
+Batch normalization can considerably improve the performance of deep neural networks. It also reduces their sensitivity to hyperparamaters such as the learning rate and the initialization strategy. One of its drawbacks is that it requires sufficiently large batch sizes (e.g. 32) to work well. Small batch sizes result in inaccurate estimations of the mean and variance of the batch and can thus lead to a higher model error. Another downside is that it relies on statistics pre-computed from the training set to perform normalization at inference time. If the data distribution changes between training and inference, this can lead to inconsistent results.
 
 ### Layer Norm
 
@@ -1468,7 +1431,7 @@ Batch normalization can considerably improve the performance of deep neural netw
 
 Its implementation differs from that of batch normalization in two aspects: the mean \\(\mu\\) and variance \\(\sigma^2\\) are calculated along the layer dimension, and the moving averages thereof are dispensed off. Since layer normalization does not depend on batch statistics, there is no need to calculate running averages of the mean and variance for use at inference.
 
-The implementation below is designed for 1D inputs.
+For 1D inputs, layer normalization can be implemented as follows:
 
 ```python
 class LayerNorm():
@@ -1658,7 +1621,7 @@ The challenge of deep learning lies in assembling and optimizing models to solve
 
 ### MNIST
 
-The MNIST dataset, assembled by [LeCun et al. (1998a)](http://yann.lecun.com/exdb/publis/pdf/lecun-98.pdf), is a collection of binary images of handwritten digits. The digits are size-normalized and centered in images of size 28x28. The dataset comprises of a training set of 60,000 samples, a test set of 10,000 samples, and their corresponding labels.
+The MNIST dataset, assembled by [LeCun et al. (1998a)](http://yann.lecun.com/exdb/publis/pdf/lecun-98.pdf), is a collection of binary images of handwritten digits. The digits are size-normalized and centered in images of size 28x28. The dataset consists of a training set of 60,000 samples, a test set of 10,000 samples, and their corresponding labels.
 
 MNIST is a classic dataset in machine learning, and is often used in introductions to the field owing to its simplicity and the ease of training different classifiers on it.
 
@@ -1674,7 +1637,7 @@ X_train.shape
 <img src="/assets/images/mnist.png" width="55%" alt="Examples from the MNIST dataset"/>
 </div>
 
-The images have a grayscale ranging from 0 to 255. We rescale these so that all values range between 0 and 1.
+The grayscale images have a pixel depth of 256, i.e. pixel values ranging from 0 to 255. We rescale the pixel values so that they range between 0 and 1.
 
 ```python
 X_train = X_train.astype("float32") / 255
@@ -1711,7 +1674,7 @@ y_train = onehot(y_train)
 y_test = onehot(y_test)
 ```
 
-Our neural network consists of single hidden layer with 600 units and ReLU activations followed by an output layer with 10 units and softmax activation. The loss is given by the cross-entropy loss function. We also apply weight decay (L2 normalization) to the weights of the hidden and output layer.
+Our neural network consists of single hidden layer with 600 units and ReLU activations followed by an output layer with 10 units and softmax activations. The loss is given by the cross-entropy loss function. We also apply weight decay (L2 normalization) to the weights of the hidden and output layer.
 
 For the backward pass, we backpropagate the loss through the loss function and output layer by taking the partial derivative of the cross-entropy function with respect to the weighted sum \\(z\\) of the output layer. Since the output of the network \\(\hat{y}\\) is given by \\(softmax(z)\\) and the loss \\(L\\) by \\(CE(y, \hat{y})\\):
 
@@ -1828,7 +1791,7 @@ We can also evaluate the model by visualizing its predictions on the test set wi
 
 ### Pytorch
 
-Defining and integrating all building blocks of a neural network by hand is slow and error-prone. The complexity of doing so increases with the number of layers and when using optimizers other than mini-batch SGDss. Deep learning libraries such as Pytorch provide an API to define models, automatic differentation, primitives to handle and load data, and support for accelerators such as GPUs.
+Defining and integrating all building blocks of a neural network by hand is slow and error-prone. The complexity of doing so increases with the number of layers and when using optimizers other than mini-batch SGD. Deep learning libraries such as Pytorch simplify this task by providing an API to define models, automatic differentation, primitives to handle and load data, and support for accelerators such as GPUs.
 
 For comparison, we define the same model in Pytorch. Note that the softmax activation function is omitted from the model definition because it is included in Pytorch's `CrossEntropyLoss` function.
 
@@ -1853,7 +1816,7 @@ class PytorchNeuralNetwork(nn.Module):
         return acc
 ```
 
-Pytorch provides two primitives for handling data: `torch.utils.data.Dataset` and `torch.utils.data.DataLoader`. `Dataset` stores the samples and their corresponding labels while `DataLoader` provides an iterable over a dataset.
+Pytorch provides two primitives for handling data: `torch.utils.data.Dataset` and `torch.utils.data.DataLoader`. `Dataset` stores the samples and their corresponding labels while `DataLoader` creates an iterable over an instance of `Dataset`.
 
 First, we convert the data into torch tensors.
 
@@ -1927,7 +1890,7 @@ While the Pytorch model has a smaller generalization gap than the previous model
 <img src="/assets/images/mnist_acc_pytorch.png" style="width: calc(1em * 26);" alt="Accuracy of the Pytorch model"/>
 </div>
 
-Further hyperparameter tuning will likely only lead to marginal improvements. Instead, a new architecture such as a CNN, dataset augmentation, and an increased representational capacity are more likely to improve the test set accuracy. State of the art models reach accuracies above 95.5% on the MNIST dataset. LeCun (1998) has compiled an [overview](http://yann.lecun.com/exdb/mnist/) several approaches and their results, while *Papers with Code* provides a [benchmark](https://paperswithcode.com/sota/image-classification-on-mnist) of the top recent methods.
+Further hyperparameter tuning will likely only lead to marginal improvements. Instead, a new architecture such as a CNN, dataset augmentation, and an increased representational capacity are more likely to improve the test set accuracy. State of the art models have an accuracy of over 95.5% on the MNIST dataset. LeCun (1998) has compiled an [overview](http://yann.lecun.com/exdb/mnist/) of several approaches and their results, while *Papers with Code* provides a [benchmark](https://paperswithcode.com/sota/image-classification-on-mnist) of the top recent methods.
 
 ## References
 
@@ -1945,9 +1908,8 @@ Further hyperparameter tuning will likely only lead to marginal improvements. In
 - Kingma, D. P., & Ba, J. L. (2014). Adam: A Method for Stochastic Optimization. 3rd International Conference on Learning Representations, ICLR 2015 - Conference Track Proceedings. [https://doi.org/10.48550/arxiv.1412.6980](https://doi.org/10.48550/arxiv.1412.6980)
 - Murphy, K. P. (2022). Probabilistic Machine Learning: An introduction. MIT Press.
 - Nielsen, M. A. (2015). Neural Networks and Deep Learning. Determination Press.
+- Ruder, S. (2016). An overview of gradient descent optimization algorithms. arXiv. [https://doi.org/10.48550/arxiv.1609.04747](https://doi.org/10.48550/arxiv.1609.04747)
 - Srivastava, N., Hinton, G., Krizhevsky, A., Sutskever, I., & Salakhutdinov, R. (2014). Dropout: A Simple Way to Prevent Neural Networks from Overfitting. Journal of Machine Learning Research, 15(56), 1929–1958. [http://jmlr.org/papers/v15/srivastava14a.html](http://jmlr.org/papers/v15/srivastava14a.html)
 - Ulyanov, D., Vedaldi, A., & Lempitsky, V. (2016). Instance Normalization: The Missing Ingredient for Fast Stylization. [https://doi.org/10.48550/arxiv.1607.08022](https://doi.org/10.48550/arxiv.1607.08022)
 - Wu, Y., & He, K. (2018). Group Normalization. International Journal of Computer Vision, 128(3), 742–755. [https://doi.org/10.48550/arxiv.1803.08494](https://doi.org/10.48550/arxiv.1803.08494)
-- Yeh, C. (2017, August 28). Deriving Batch-Norm Backprop Equations. [https://chrisyeh96.github.io/2017/08/28/deriving-batchnorm-backprop.html](https://chrisyeh96.github.io/2017/08/28/deriving-batchnorm-backprop.html)
-- Zakka, K. (2016, September 14). Deriving the Gradient for the Backward Pass of Batch Normalization. [https://kevinzakka.github.io/2016/09/14/batch_normalization/](https://kevinzakka.github.io/2016/09/14/batch_normalization/)
 </div>
