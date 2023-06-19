@@ -129,6 +129,19 @@ code .notice {
   margin-bottom: 0;
 }
 
+// Increase size of profile picture
+.author__avatar img {
+  max-width: 140px;
+}
+
+// Reduce spacing between the header and the feed on the homepage
+.archive .page__title {
+  font-size: 0em;
+}
+.archive__item-title {
+  margin-top: 0.5em;
+}
+
 // ASCII art as header logo
 .ascii {
   overflow: hidden;
