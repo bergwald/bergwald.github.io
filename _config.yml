@@ -59,11 +59,11 @@ plugins:
   - jekyll-include-cache
 
 author:
-  name   : "Bergwald"
+  name   : "Thomas | @bergwald"
   avatar : "/assets/images/profile.jpg"
   bio    : >-
-    Business Administration and Politics at Stockholm University.
-    Computer Science at night.
+    Student at Stockholm University. Interested in finance, mathematics,
+    computer science, and artificial intelligence.
   location: "Stockholm, Sweden"
   links:
     # - label: "Website"
