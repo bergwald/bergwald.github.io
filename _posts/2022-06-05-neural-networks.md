@@ -79,7 +79,7 @@ Weighted sum = [[1.11]]
 Activation = 0.7521291114395702
 </div>
 
-***Note***: Neural networks consisting of a single neuron date back to the 1950s. The ***perceptron***, a machine learning algortihm used for binary classification, effectively consists of a single neuron using a [Heaviside step function](https://en.wikipedia.org/wiki/Heaviside_step_function) as its activation function.
+***Note***: Neural networks consisting of a single neuron date back to the 1950s. The ***perceptron***, a machine learning algorithm used for binary classification, effectively consists of a single neuron using a [Heaviside step function](https://en.wikipedia.org/wiki/Heaviside_step_function) as its activation function.
 
 ### Activation Functions
 
@@ -115,7 +115,7 @@ The decision surface illustrated above is that of a model with ReLU and Sigmoid 
 
 #### **Sigmoid**
 
-Sigmoid (also known as logistic function) is a non-linear, continuously differentiable, monotonic activation function. It has a fixed range \\((0,1)\\). One of the issues of sigmoid is that it susceptible to the ***vanishing gradient problem***.
+Sigmoid (also known as logistic function) is a non-linear, continuously differentiable, monotonic activation function. It has a fixed range \\((0,1)\\). One of the issues with sigmoid is that it is susceptible to the ***vanishing gradient problem***.
 
 $$sigmoid(z) = \dfrac{1}{1 + e^{-z}}$$
 
@@ -155,7 +155,7 @@ def tanh(z, derivative=False):
 
 #### **Rectified Linear Unit (ReLU)**
 
-ReLU is a non-linear activation function with range \\([0, ∞)\\). ReLU is less computionally expensive than other activation functions because it involves simpler mathemtical operations, and therefore allows for faster training. Moreover neural networks using ReLU benefit from ***sparse activation***: not all neurons in a hidden are activated (activation > 0). However, ReLU neurons can suffer from the ***dying ReLU problem***.
+ReLU is a non-linear activation function with range \\([0, ∞)\\). ReLU is less computationally expensive than other activation functions because it involves simpler mathematical operations, and therefore allows for faster training. Moreover neural networks using ReLU benefit from ***sparse activation***: not all neurons in a hidden layer are activated (activation > 0). However, ReLU neurons can suffer from the ***dying ReLU problem***.
 
 $$ReLU(x) = max(0, x)$$
 
@@ -183,9 +183,9 @@ def relu(z, derivative=False):
 
 ### Layers
 
-A single neuron can only extract a limited representation on its own. In neural networks, neurons are therefore aggregated into connected ***layers***. Layers extract *representations* out of the data fed into them and, chained together, *progressively distillate the data*.
+A single neuron can only extract a limited representation on its own. In neural networks, neurons are therefore aggregated into connected ***layers***. Layers extract *representations* out of the data fed into them and, chained together, *progressively distill the data*.
 
-All weights in a layer can be represented as a matrix \\(W\\) with \\(k\\) neurons that each have \\(n\\) weights. The sums of the weighted inputs of all neurons in the \\(n\\)-th layer can be calculated as a the matrix vector product between the weights matrix and the vector \\(a^{(n-1)}\\) of the activations of the previous layer. The activation vector \\(a^{(n)}\\) of the \\(n\\)-th layer is then the sum of the weighted inputs vector and the bias vector \\(b\\), passed through an activation function.
+All weights in a layer can be represented as a matrix \\(W\\) with \\(k\\) neurons, each with \\(n\\) weights. The sums of the weighted inputs of all neurons in the \\(n\\)-th layer can be calculated as a the matrix-vector product between the weights matrix and the vector \\(a^{(n-1)}\\) of the activations of the previous layer. The activation vector \\(a^{(n)}\\) of the \\(n\\)-th layer is then the sum of the weighted inputs vector and the bias vector \\(b\\), passed through an activation function.
 
 $$
 a^{(n)} = σ
@@ -311,9 +311,9 @@ inputs = inputs[0]
 
 Neural networks can be represented at different levels of abstraction. The perspective taken so far is that they are a chain of layers and that each layer represents a set of neurons. However, this point of view is reductive. Layers are an abstraction and not a fundamental building block. The core unit of neural networks are functions of one or more variables. A layer can thus represent any combination of one or more functions.
 
-A neural network can be formally described as a ***computational graph***. The network is thus a directed graph where every node is a variable (e.g. scalar, tensor, etc.) and every directed edge is an operation (i.e. a differentiable function). The structure of a neural network's computional graph is commonly denoted as its ***architecture***.
+A neural network can be formally described as a ***computational graph***. The network is thus a directed graph where every node is a variable (e.g. scalar, tensor, etc.) and every directed edge is an operation (i.e. a differentiable function). The structure of a neural network's computational graph is commonly denoted as its ***architecture***.
 
-Deep learning libraries such as *Tensorflow* and *Pytorch* provide implementations of commonly used layers and an API to chains these layers together into a computational graph. Some of these libraries adopt an object-oriented approach, defining layers as stateful classes that can be combined by the user to build a complete neural network.
+Deep learning libraries such as *Tensorflow* and *Pytorch* provide implementations of commonly used layers and an API to chain these layers together into a computational graph. Some of these libraries adopt an object-oriented approach, defining layers as stateful classes that can be combined by the user to build a complete neural network.
 
 ```python
 class Layer:
@@ -394,7 +394,7 @@ The activations of a filter are computed as a convolution between its weights an
 
 #### Recurrent layers
 
-Feedforward layers such as fully-connected and convolutional layers process each input independently, without storing any state between each forward pass. With these layers, sequential data such as timeseries or text must therefore be processed in a single sequence, i.e. all at once. ***Recurrent layers*** process sequential data iteratively and in relation to previous sequences. Through recurrence, they mantain a *state* across each step.
+Feedforward layers such as fully-connected and convolutional layers process each input independently, without storing any state between each forward pass. With these layers, sequential data such as timeseries or text must therefore be processed in a single sequence, i.e. all at once. ***Recurrent layers*** process sequential data iteratively and in relation to previous sequences. Through recurrence, they maintain a *state* across each step.
 
 <div align="center">
 <img src="/assets/images/recurrentlayer.svg" width="55%" alt="Recurrent layer" />
@@ -715,7 +715,7 @@ $$\arg \min_{\theta} J(\theta; x, y)$$
 
 The conventional approach is to solve this optimization problem using a variant of gradient descent.
 
-Thoughout this section, we graph the optimizers using test functions for optimization algorithms, which are also known as artificial landscapes. One such function is the *McCormick function*, defined as:
+Throughout this section, we graph the optimizers using test functions for optimization algorithms, which are also known as artificial landscapes. One such function is the *McCormick function*, defined as:
 
 $$z = f(x, y) = sin(x + y) + (x - y)^2 - 1.5x + 2.5y + 1$$
 
@@ -753,7 +753,7 @@ def grad_mccormick(x, y):
 
 <div align="center">
 <img src="/assets/images/mccormick_contour.webp" style="width: calc(1em * 26);" alt="Heatmap of the McCormick function"/>
-<p style="font-size:0.8em;">A heatmap of the McCormick function, which is used as an artifical loss landscape. The quivers indicate the direction of the negative gradient.</p>
+<p style="font-size:0.8em;">A heatmap of the McCormick function, which is used as an artificial loss landscape. The quivers indicate the direction of the negative gradient.</p>
 </div>
 
 #### Batch Gradient Descent
@@ -812,7 +812,7 @@ The figure above illustrates a distribution of gradients for two parameters \\(\
 
 ##### Simulated Stochasticity
 
-The optimization of artificial landscapes such as the McCormick function is inherently different from that of neural networks. Artifical landscapes are optimized with respect to their real variables and their gradients cannot therefore be approximated stochasticly. However, to simulate the stochasticity of SGD, we can create an artificial stochastic process that generates approximate gradients.
+The optimization of artificial landscapes such as the McCormick function is inherently different from that of neural networks. Artificial landscapes are optimized with respect to their real variables and their gradients cannot therefore be approximated stochastically. However, to simulate the stochasticity of SGD, we can create an artificial stochastic process that generates approximate gradients.
 
 We assume that the partial derivatives over the parameters \\(\theta_1\\) and \\(\theta_2\\) follow normal distributions with standard deviation of 16 and 4, respectively. These distributions are kept constant for all parameter values (this is not very realistic, but is good enough for our purpose). The key variables of our simulation are the dataset and batch size, which determine the expected accuracy of the approximated gradient. The dataset size is set to 40.
 
@@ -870,7 +870,7 @@ The advantage of mini-batch gradient descent is that using a batch size larger t
 
 $$\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}}$$
 
-where \\(\sigma\\) is the true standard deviation of the distribution and \\(n\\) is the number of samples drawn. The factor \\(1 / \sqrt{n}\\) indicates that reducing the standard error of the mean requires exponentially more samples. Beyond a certain size, large batches have therefore diminishing returns. Memory and IO bandwidth limit vectorization and it becomes preferrable to update the parameters more frequently rather than calculate more accurate gradients.
+where \\(\sigma\\) is the true standard deviation of the distribution and \\(n\\) is the number of samples drawn. The factor \\(1 / \sqrt{n}\\) indicates that reducing the standard error of the mean requires exponentially more samples. Beyond a certain size, large batches have therefore diminishing returns. Memory and IO bandwidth limit vectorization and it becomes preferable to update the parameters more frequently rather than calculate more accurate gradients.
 
 <div align="center">
 <img src="/assets/images/mccormick_minibatch.webp" style="width: calc(1em * 26);" alt="Mini-batch gradient descent"/>
@@ -910,7 +910,7 @@ path = list(momentum(start, lr=0.00005, gamma=0.98, epochs=10, batch_size=4))
 </div>
 </div>
 
-The graph below illustrates some of the characterisitcs of momentum and mini-batch gradient descent on the artificial landscape generated by the Rosenbrock function. Momentum is able to navigate through the ravine and settle near the global minimum while mini-batch gradient descent oscillates at the start and struggles to advance through the bottom of the ravine where gradients are small.
+The graph below illustrates some of the characteristics of momentum and mini-batch gradient descent on the artificial landscape generated by the Rosenbrock function. Momentum is able to navigate through the ravine and settle near the global minimum while mini-batch gradient descent oscillates at the start and struggles to advance through the bottom of the ravine where gradients are small.
 
 <div align="center">
 <img src="/assets/images/rosenbrock.webp" style="width: calc(1em * 26);" alt="Momentum optimizer on the Rosenbrock function"/>
@@ -1068,7 +1068,7 @@ Gradients can diminish drastically when they are backpropagated through a deep n
 A key function of initialization is to break the symmetry between different neurons. If all parameters in a given dense layer were initialized with the same constant, they would all compute the same ouputs and receive the same updates. 
 Random initialization breaks this symmetry and creates asymmetries that can be tweaked through backpropagation and SGD to train the neural network.
 
-Typicaly, only the weights are initialized randomly while the biases are set to a heuristically chosen constant.
+Typically, only the weights are initialized randomly while the biases are set to a heuristically chosen constant.
 
 A simple method of weight intialization is to sample values from a Gaussian probability distribution with mean `0` and a standard deviation of `1`.
 
@@ -1093,7 +1093,7 @@ Mean:    0.0018   SD: 1.0009
 
 $$W_{ij} \sim\ U\begin{pmatrix}-\sqrt{\frac{6}{m+n}},\sqrt{\frac{6}{m+n}}\end{pmatrix}$$
 
-This method, known as ***Xavier initialization***, mantains the variance of activations and backpropagated errors thoughout the network. Neurons with a sigmoid or tanh activation function are therefore usually initialized with this method to mitigate the issue of vanishing gradients.
+This method, known as ***Xavier initialization***, maintains the variance of activations and backpropagated errors thoughout the network. Neurons with a sigmoid or tanh activation function are therefore usually initialized with this method to mitigate the issue of vanishing gradients.
 
 ```python
 def xavier(inputs, neurons):
@@ -1122,7 +1122,7 @@ The larger the number of input and neurons in a layer, the smaller the range of 
 <img src="/assets/images/init_xavier_range.webp" style="width: calc(1em * 24);" alt="Range of weights initialized with Xavier's initialization method"/>
 </div>
 
-[He et al.](https://arxiv.org/abs/1502.01852) (2015) propose a strategy tailored to networks using the ReLU activation function that, similarly to Xavier initialization, would mantain a stable activation variance throughout the network. Weights are initialized using a Gaussian probability distribution with a mean of 0.0 and a standard deviation of \\(\sqrt \frac{2}{n}\\) where \\(n\\) is the number of inputs to the neuron, while biases are initialized to zero. This method is now known as ***He initialization***.
+[He et al.](https://arxiv.org/abs/1502.01852) (2015) propose a strategy tailored to networks using the ReLU activation function that, similarly to Xavier initialization, would maintain a stable activation variance throughout the network. Weights are initialized using a Gaussian probability distribution with a mean of 0.0 and a standard deviation of \\(\sqrt \frac{2}{n}\\) where \\(n\\) is the number of inputs to the neuron, while biases are initialized to zero. This method is now known as ***He initialization***.
 
 ```python
 def he(inputs, neurons):
@@ -1151,7 +1151,7 @@ The central challenge in machine learning is to perform well on new, *previously
 <img src="/assets/images/fit.webp" style="width: calc(1em * 24);" alt="Overfitting and underfitting"/>
 </div>
 
-***Underfitting*** occurs when a model is unable to perform well on the training data. ***Overfitting*** occurs when it performs well on the training data, but does not generalize well. The reason behind this is that the model learns specific characteristics of the training data that are not general features. Specifically, the model's parameters become too adapted to the noise in the data and fail to capture its essential features. Overfitting can be adressed by regularizing the model.
+***Underfitting*** occurs when a model is unable to perform well on the training data. ***Overfitting*** occurs when it performs well on the training data, but does not generalize well. The reason behind this is that the model learns specific characteristics of the training data that are not general features. Specifically, the model's parameters become too adapted to the noise in the data and fail to capture its essential features. Overfitting can be addressed by regularizing the model.
 
 ## Regularization
 
@@ -1169,7 +1169,7 @@ Large weights place a strong emphasis on a few features and lead to high gradien
 
 $$L_{reg} = L + \lambda \Omega$$
 
-where \\(L\\) is the unregularized loss, and \\(\Omega(\theta)\\) is the regularization penalty (\\(L^1\\) or \\(L^2\\)). \\(\lambda\\) > 0 is a hyperparameter that indicates the strenght of the preference for smaller weights. Minimizing a loss with weight regularization compels the model to choose weights that "make a tradeoff between fitting the training data and being small" (Goodfellow et al., 2016, p. 119).
+where \\(L\\) is the unregularized loss, and \\(\Omega(\theta)\\) is the regularization penalty (\\(L^1\\) or \\(L^2\\)). \\(\lambda\\) > 0 is a hyperparameter that indicates the strength of the preference for smaller weights. Minimizing a loss with weight regularization compels the model to choose weights that "make a tradeoff between fitting the training data and being small" (Goodfellow et al., 2016, p. 119).
 
 \\(L^p\\) spaces reminder: The \\(p\\)-norm or \\(L^p\\)-norm of a vector \\(x\\) is defined by
 
