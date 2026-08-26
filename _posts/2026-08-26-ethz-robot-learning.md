@@ -30,3 +30,13 @@ We won first place in the task category.
   </video>
   <figcaption>A policy rollout on the physical SO-101 robot, shown in real time.</figcaption>
 </figure>
+
+## Rollout from Demo Day
+
+<figure class="video-figure" markdown="0">
+  <video autoplay controls loop muted playsinline preload="metadata">
+    <source src="{{ '/assets/videos/demo_day_rollout.mp4' | relative_url }}" type="video/mp4">
+    Embedded MP4 video is not supported by this browser.
+  </video>
+  <figcaption>A policy rollout recorded during demo day, shown in real time.</figcaption>
+</figure>
