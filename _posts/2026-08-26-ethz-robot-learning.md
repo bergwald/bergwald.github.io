@@ -28,5 +28,5 @@ We won first place in the task category.
     <source src="{{ '/assets/videos/real_rollout_1.mp4' | relative_url }}" type="video/mp4">
     Embedded MP4 video is not supported by this browser.
   </video>
-  <figcaption>A policy rollout on the physical SO-101 robot.</figcaption>
+  <figcaption>A policy rollout on the physical SO-101 robot, shown in real time.</figcaption>
 </figure>
