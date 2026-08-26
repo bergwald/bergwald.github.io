@@ -18,7 +18,7 @@ We won first place in the task category.
     <source src="{{ '/assets/videos/sim_rollouts.mp4' | relative_url }}" type="video/mp4">
     Embedded MP4 video is not supported by this browser.
   </video>
-  <figcaption>Parallel policy rollouts of the pick-and-place task in simulation.</figcaption>
+  <figcaption>Parallel policy rollouts of the pick-and-place task in simulation. For each rollout, the view from the wrist-mounted camera is shown on the left, and an overview of the scene is shown on the right.</figcaption>
 </figure>
 
 ## Rollout on the Real Robot
@@ -28,5 +28,5 @@ We won first place in the task category.
     <source src="{{ '/assets/videos/real_rollout_1.mp4' | relative_url }}" type="video/mp4">
     Embedded MP4 video is not supported by this browser.
   </video>
-  <figcaption>A vision-only policy rollout on the physical SO-101 robot.</figcaption>
+  <figcaption>A policy rollout on the physical SO-101 robot.</figcaption>
 </figure>
