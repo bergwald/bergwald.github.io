@@ -13,8 +13,8 @@ We won first place in the task category.
 
 ## Rollouts in Simulation
 
-<figure class="video-figure">
-  <video controls loop muted playsinline preload="metadata">
+<figure class="video-figure" markdown="0">
+  <video autoplay controls loop muted playsinline preload="metadata">
     <source src="{{ '/assets/videos/sim_rollouts.mp4' | relative_url }}" type="video/mp4">
     Embedded MP4 video is not supported by this browser.
   </video>
@@ -23,8 +23,8 @@ We won first place in the task category.
 
 ## Rollout on the Real Robot
 
-<figure class="video-figure">
-  <video controls loop muted playsinline preload="metadata">
+<figure class="video-figure" markdown="0">
+  <video autoplay controls loop muted playsinline preload="metadata">
     <source src="{{ '/assets/videos/real_rollout_1.mp4' | relative_url }}" type="video/mp4">
     Embedded MP4 video is not supported by this browser.
   </video>
