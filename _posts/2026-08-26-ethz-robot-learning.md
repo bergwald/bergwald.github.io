@@ -1,13 +1,15 @@
 ---
-title: "Vision-Only Reinforcement Learning on the SO-101"
+title: "Sim-to-Real Reinforcement Learning on the SO-101 Robot"
 date: 2026-08-26T12:00:00
-excerpt: "A vision-only policy for coloured-cube pick-and-place, with rollouts shown in simulation and on a real SO-101 robot."
+excerpt: "Simulation and real-robot rollouts of a vision-only pick-and-place policy driven solely by wrist-camera observations."
 show_date: true
 ---
 
-Some rollouts of the reinforcement learning policy that my group trained for the final project and competition in the Robot Learning course at ETHZ. The task consisted of picking and placing a target colour cube in the bowl. The location of the cube and bowl were not fixed. The policy is vision-only: only images from the wrist camera attached to the S0-101 robot arm were provided as policy observations. Training was performed fully in simulation using reinforcement learning.
+Some rollouts of the reinforcement learning policy trained by my group for the final project and competition in ETH Zürich’s Robot Learning course.
 
-We won first place in the competition in our task category.
+For the task, a cube of the target colour had to be picked up and placed into the bowl. At the start of each rollout, the positions of both the cube and the bowl were randomised. Only images from the wrist-mounted camera on the SO-101 robot arm were provided as policy observations. The policy was trained entirely in simulation using reinforcement learning.
+
+We won first place in the task category.
 
 ## Rollouts in Simulation
 
