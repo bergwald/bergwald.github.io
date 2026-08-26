@@ -235,6 +235,25 @@ mjx-math {
   }
 }
 
+// Responsive videos in posts
+.video-figure {
+  margin: 1.3em 0 2em;
+
+  video {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: #000;
+  }
+
+  figcaption {
+    margin-top: 0.6em;
+    color: $muted-text-color;
+    font-size: 0.8em;
+    text-align: center;
+  }
+}
+
 // Dracula Base 16 theme (not used)
 // $base00: #282a36; // Background
 // $base01: #3a3c4e;
